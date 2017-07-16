@@ -13,5 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="F:/controllers/jar/poi-2.5.1-final-20040804.jar"/>
+	<classpathentry kind="lib" path="F:/controllers/jar/poi-contrib-2.5.1-final-20040804.jar"/>
+	<classpathentry kind="lib" path="F:/controllers/jar/poi-scratchpad-2.5.1-final-20040804.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USUARIO/Downloads/poi-3.7.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

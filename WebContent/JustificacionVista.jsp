@@ -10,19 +10,21 @@
 		    $('#insertar').click(function(){
 			 $('#data').attr('action', 'insertar.jsp');
 			});	
+		    
+		    $('#descargar').click(function(){
+				 $('#data').attr('action', 'downloadPDF.jsp');
+				});	
 	});
 </script>
 </head>
 <body>
-		<form action='insertar.jsp' method='post' id='data'>
+	<form action='insertar.jsp' method='post' id='data'>
 	<p>Ingrese el código del alumno :<input type='text' name='codigo'/></p>
 	<div>
 	<input type='file' accept = '.doc' id='seleccionar' class='btn btn-primary btn-lg'name='registrar' value='registrar'/>
-	<input type='submit' id='insertar' class='btn btn-primary btn-lg' name='registrar' value='registrar'/>
-	
-	
-	<input type='submit' id='modificar' class='btn btn-primary btn-lg' name='modificar' value='modificar'/>
-	<input type='submit' id='eliminar' class='btn btn-primary btn-lg' name='eliminar' value='eliminar'/>
+	<input type='submit' id='insertar' class='btn btn-primary btn-lg' name='guardar' value='registrar'/>
+	<input type='submit' id='descargar' class='btn btn-primary btn-lg' name='descargar' value='descargar'/>
+
 	</div>
 	</form>
 	<div class="container">

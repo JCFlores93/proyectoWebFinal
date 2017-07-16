@@ -13,7 +13,9 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="connectionDB.*"%>
 <%@page  import="java.nio.file.Files"%>
-
+<%@page  import="org.apache.poi.hwpf.extractor.WordExtractor"%>
+<%@page  import="org.apache.poi.xwpf.extractor.XWPFWordExtractor"%>
+<%@page  import="org.apache.poi.xwpf.usermodel.XWPFDocument"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,45 +44,28 @@
 		out.println("</div>");
 		out.println("</form>");
 		String proceso = "";
-		String in = request.getParameter("registrar");
-		System.out.println("request registrar" + in);
-		/*String filePath = in;
-		System.out.println("request in" + in);
-		InputStream inputStream = new FileInputStream(new File(filePath));
-		System.out.println("request inputStream"+ inputStream);*/
-		 BaseDeDatos.conectar();
-		 System.out.println("hola1");
-	//	String sql = "INSERT INTO datos_personales_empleado (documentFile) values ("+inputStream+")";
-	//	BaseDeDatos.ejectuarInstruccion(sql);
-byte[] array = Files.readAllBytes(new File(in).toPath());
 		
-		/*Path path = Paths.get(in);
-		byte[] data = Files.readAllBytes(path);		
-		System.out.println("hola2" + data);*/
-		String sql1 = "INSERT INTO datos_personales_empleado (documentFile) values ("+array+")";
-		System.out.println("hola3" + sql1);
-		BaseDeDatos.ejectuarInstruccion(sql1);
 		if (request.getParameter("registrar").compareTo("registrar") == 0) {
-			/*byte [] data = Files.readAllBytes(document2);
-			InputStream document;
-			document = request.getParameter("registrar");
-			String codigo, contraseña, nombre, apellido, fecha, direccion, telefono;
-			codigo = request.getParameter("codigo");
-			contraseña = request.getParameter("contrasena");
-			nombre = request.getParameter("nombre");
-			apellido = request.getParameter("apellido");
-			fecha = request.getParameter("fecha");
-			direccion = request.getParameter("direccion");
-			telefono = request.getParameter("telefono");*/
-		/*	String instruccion = "insert into datos_alumnos(codigo_alumno,nombre,apellido,fech_nacimiento,direccion,telef,contrasena)"
-					+ " values('" + codigo + "','" + nombre + "','" + apellido + "','" + fecha + "','" + direccion
-					+ "','" + telefono + "','" + contraseña + "')";
-			BaseDeDatos.ejectuarInstruccion(instruccion);*/
-			/* ResultSet tabla =null;
-            BaseDeDatos.conectar();
-			String instruccion1 = "insert into datos_personales_empleado(file)"
-					+ " values('" + in + "') where id_emp = 1";
-			 BaseDeDatos.ejectuarInstruccion(instruccion1);*/
+			//Aquí obtenemos la ruta de la carpeta donde se encuentra el documento .
+			String in = request.getParameter("registrar");
+			//String in ="D:\\PROBLEMAS_2_DE _MERCADO.doc";
+			System.out.println("request registrar" + in);
+			 BaseDeDatos.conectar();
+			 System.out.println("hola1");
+			File file = new File(in);
+			FileInputStream input = new FileInputStream(file);
+			FileInputStream inputToSave = new FileInputStream(file);
+			System.out.println("FileInputStream" + input);
+			InputStream inputFile = input;
+			System.out.println("InputStream" + inputFile);
+			WordExtractor we = new WordExtractor(inputFile);
+			String texto = we.getText();
+			System.out.println(texto);
+			BaseDeDatos.uploadDocument(1, inputToSave);
+			BaseDeDatos.desconectar();
+		}else{
+	
+			
 		}
 	%>
 
